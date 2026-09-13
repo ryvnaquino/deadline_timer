@@ -1,111 +1,118 @@
 :root {
-  --ink: #191919;
-  --muted: #787774;
-  --faint: #9b9a97;
-  --line: #e9e9e7;
-  --paper: #ffffff;
-  --white: #ffffff;
-  --accent: #191919;
-  --accent-dark: #37352f;
-  --accent-pale: #f1f1ef;
-  --green: #7c9870;
-  --shadow: 0 10px 30px rgba(25, 25, 25, 0.12);
+  --canvas: #101010;
+  --panel: #151515;
+  --ink: #f0efed;
+  --muted: #8f8e8c;
+  --faint: #6d6c6a;
+  --line: #303030;
+  --line-soft: #242424;
+  --white: #fff;
+  --danger: #d87878;
 }
 
 * { box-sizing: border-box; }
-
 body {
   margin: 0;
   min-width: 320px;
   color: var(--ink);
-  background: var(--paper);
+  background: var(--canvas);
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-
 button, input { font: inherit; }
 button { cursor: pointer; }
-
-.app-shell { max-width: 1160px; min-height: 100vh; margin: 0 auto; padding: 30px 42px 28px; }
+.app-shell {
+  max-width: 1120px;
+  min-height: calc(100vh - 64px);
+  margin: 32px auto;
+  padding: 58px 60px 56px;
+  background: var(--panel);
+  border-radius: 12px;
+}
 .topbar, .section-heading, .footer, .dialog-heading, .dialog-actions { display: flex; align-items: center; justify-content: space-between; }
-.brand { display: flex; gap: 10px; align-items: center; color: var(--ink); font-size: 15px; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; }
-.brand-mark { display: grid; width: 27px; height: 27px; place-items: center; color: var(--white); background: var(--ink); border-radius: 4px; font-size: 14px; }
-.button { border: 0; border-radius: 4px; font-size: 12px; font-weight: 600; letter-spacing: -0.01em; transition: transform .18s, background .18s, color .18s; }
-.button:hover { transform: translateY(-1px); }
-.button-primary { display: inline-flex; align-items: center; gap: 7px; padding: 11px 16px; color: var(--white); background: var(--ink); }
-.button-primary:hover { background: var(--accent-dark); }
-.button-secondary { display: inline-flex; gap: 8px; align-items: center; padding: 11px 15px; color: var(--accent-dark); background: var(--accent-pale); }
-.button-ghost { padding: 11px 16px; color: var(--muted); background: transparent; }
-
-.hero { display: flex; align-items: flex-end; justify-content: space-between; padding: 116px 0 90px; }
-.eyebrow { margin: 0 0 15px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.brand {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-decoration: none;
+}
+.button { border: 1px solid var(--line); border-radius: 7px; font-size: 15px; transition: background .18s, border-color .18s; }
+.button-primary { display: inline-flex; align-items: center; gap: 7px; padding: 14px 24px; color: var(--ink); background: transparent; }
+.button-primary:hover { background: #202020; border-color: #4a4a4a; }
+.button-secondary { display: inline-flex; gap: 8px; align-items: center; padding: 11px 15px; color: var(--ink); background: transparent; }
+.button-ghost { padding: 11px 16px; color: var(--muted); background: transparent; border: 0; }
+.hero { padding: 112px 0 70px; }
+.eyebrow { margin: 0 0 25px; color: #a5a4a2; font-size: 12px; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; }
 h1, h2, h3, p { margin-top: 0; }
-h1 { margin-bottom: 20px; font-size: clamp(42px, 6vw, 72px); font-weight: 600; letter-spacing: -.075em; line-height: .98; }
-h1 em { color: var(--ink); font-family: Georgia, serif; font-weight: 400; letter-spacing: -.07em; }
-.hero-copy { margin: 0; color: var(--muted); font-size: 14px; }
-.today-card { padding: 16px 22px; border: 1px solid var(--line); border-radius: 4px; text-align: right; }
-.today-label { display: block; margin-bottom: 7px; color: var(--faint); font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
-.today-card strong { font-size: 14px; font-weight: 600; }
-
-.deadline-section { padding-bottom: 64px; }
-.section-heading { padding-bottom: 20px; border-bottom: 1px solid var(--line); }
-.section-heading h2 { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -.03em; }
-.section-heading h2 span { display: inline-flex; align-items: center; justify-content: center; width: 21px; height: 21px; margin-left: 5px; color: var(--muted); background: var(--accent-pale); border-radius: 4px; font-size: 10px; vertical-align: 2px; }
-.section-heading .eyebrow { margin-bottom: 9px; }
-.section-hint { margin: 21px 0 0; color: var(--faint); font-size: 11px; }
-.deadline-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding-top: 12px; }
-.deadline-card { position: relative; min-width: 0; padding: 25px 26px 22px; background: var(--white); border: 1px solid var(--line); border-radius: 4px; transition: border .18s, box-shadow .18s; }
-.deadline-card:hover { border-color: #ddd8d0; box-shadow: 0 8px 25px rgba(35, 31, 27, .04); }
+h1 {
+  max-width: 950px;
+  margin-bottom: 27px;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 700;
+  letter-spacing: -.045em;
+  line-height: 1.08;
+}
+.hero-copy { margin: 0; color: var(--muted); font-family: Georgia, "Times New Roman", serif; font-size: 28px; font-style: italic; }
+.deadline-section { padding-bottom: 68px; }
+.section-heading { padding-bottom: 24px; }
+.section-heading .eyebrow { margin: 0; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.deadline-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.deadline-card { position: relative; min-width: 0; padding: 31px 30px 30px; background: transparent; border: 1px solid var(--line); border-radius: 3px; }
 .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
-.deadline-title { margin: 0; overflow: hidden; font-size: 16px; font-weight: 600; letter-spacing: -.03em; text-overflow: ellipsis; white-space: nowrap; }
-.deadline-date { margin: 7px 0 0; color: var(--muted); font-size: 11px; }
+.deadline-title { margin: 0; overflow: hidden; font-family: Georgia, "Times New Roman", serif; font-size: 27px; font-weight: 700; letter-spacing: -.03em; text-overflow: ellipsis; white-space: nowrap; }
+.deadline-date { margin: 6px 0 0; color: var(--muted); font-size: 16px; font-weight: 600; }
 .menu-wrap { position: relative; }
-.icon-button { display: grid; width: 28px; height: 28px; place-items: center; flex: 0 0 auto; color: var(--muted); background: transparent; border: 0; border-radius: 4px; font-size: 21px; line-height: 1; }
-.icon-button:hover { color: var(--ink); background: var(--paper); }
-.menu { position: absolute; z-index: 2; top: 32px; right: 0; width: 110px; padding: 5px; background: var(--white); border: 1px solid var(--line); border-radius: 4px; box-shadow: var(--shadow); }
+.icon-button { display: grid; width: 28px; height: 28px; place-items: center; color: var(--muted); background: transparent; border: 0; border-radius: 4px; font-size: 20px; }
+.icon-button:hover { color: var(--ink); background: #222; }
+.menu { position: absolute; z-index: 2; top: 32px; right: 0; width: 110px; padding: 5px; background: #242424; border: 1px solid #3b3b3b; border-radius: 4px; }
 .menu button { display: block; width: 100%; padding: 8px 9px; color: var(--ink); background: transparent; border: 0; border-radius: 4px; font-size: 11px; text-align: left; }
-.menu button:hover { background: var(--paper); }
-.menu .delete-action { color: #b44b4b; }
-.countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 29px; }
-.unit { padding: 13px 8px 11px; background: #f7f7f5; border-radius: 4px; text-align: center; }
-.unit-value { display: block; color: var(--ink); font-family: "DM Mono", monospace; font-size: 21px; letter-spacing: -.08em; }
-.unit-label { display: block; margin-top: 5px; color: var(--faint); font-size: 9px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
-.deadline-card.expired { background: #fbfbfa; }
-.deadline-card.expired .unit-value { color: var(--accent); }
-.expired-label { margin: 29px 0 17px; color: #b44b4b; font-size: 11px; font-weight: 600; }
-
-.empty-state { padding: 72px 20px 88px; color: var(--muted); text-align: center; }
-.empty-icon { display: grid; width: 53px; height: 53px; margin: 0 auto 20px; place-items: center; color: var(--ink); background: var(--accent-pale); border-radius: 4px; font-size: 25px; }
-.empty-state h3 { margin-bottom: 10px; color: var(--ink); font-size: 18px; letter-spacing: -.04em; }
-.empty-state p { max-width: 320px; margin: 0 auto 23px; font-size: 12px; line-height: 1.7; }
-.footer { padding-top: 20px; border-top: 1px solid var(--line); color: var(--faint); font-size: 10px; }
+.menu button:hover { background: #303030; }
+.menu .delete-action { color: var(--danger); }
+.countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 30px; }
+.unit { padding: 21px 8px 17px; border: 1px solid var(--line); text-align: center; }
+.unit-value { display: block; color: var(--ink); font-size: 34px; font-weight: 400; letter-spacing: -.05em; }
+.unit-label { display: block; margin-top: 9px; color: var(--muted); font-size: 13px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; }
+.deadline-card.expired { border-color: #493030; }
+.expired-label { margin: 31px 0 18px; color: var(--danger); font-size: 13px; font-weight: 600; }
+.empty-state { padding: 80px 20px; color: var(--muted); text-align: center; }
+.empty-icon { margin: 0 auto 20px; color: var(--muted); font-size: 35px; }
+.empty-state h3 { margin-bottom: 10px; color: var(--ink); font-family: Georgia, serif; font-size: 25px; }
+.empty-state p { max-width: 320px; margin: 0 auto 23px; font-size: 13px; line-height: 1.7; }
+.footer { padding-top: 22px; border-top: 1px solid var(--line-soft); color: var(--faint); font-size: 11px; }
 .status { display: flex; align-items: center; gap: 7px; }
-.status i { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
-
-.deadline-dialog { width: min(430px, calc(100% - 32px)); padding: 30px; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-radius: 6px; box-shadow: var(--shadow); }
-.deadline-dialog::backdrop { background: rgba(36, 34, 31, .2); backdrop-filter: blur(3px); }
+.status i { width: 6px; height: 6px; background: #78956f; border-radius: 50%; }
+.deadline-dialog { width: min(430px, calc(100% - 32px)); padding: 30px; color: var(--ink); background: #1c1c1c; border: 1px solid #3b3b3b; border-radius: 7px; }
+.deadline-dialog::backdrop { background: rgba(0, 0, 0, .72); }
 .dialog-heading { align-items: flex-start; margin-bottom: 28px; }
 .dialog-heading .eyebrow { margin-bottom: 10px; }
-.dialog-heading h2 { margin: 0; font-size: 22px; letter-spacing: -.05em; }
-.deadline-dialog label { display: block; margin: 17px 0 8px; font-size: 11px; font-weight: 600; }
-.deadline-dialog input { width: 100%; padding: 12px 13px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 7px; outline: 0; font-size: 13px; }
-.deadline-dialog input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-pale); }
-.form-error { min-height: 16px; margin: 9px 0 0; color: #b44b4b; font-size: 11px; }
+.dialog-heading h2 { margin: 0; font-family: Georgia, serif; font-size: 25px; }
+.deadline-dialog label { display: block; margin: 17px 0 8px; color: var(--muted); font-size: 11px; font-weight: 600; }
+.deadline-dialog input { width: 100%; padding: 12px 13px; color: var(--ink); background: #111; border: 1px solid var(--line); border-radius: 4px; outline: 0; font-size: 13px; }
+.deadline-dialog input:focus { border-color: #777; }
+.form-error { min-height: 16px; margin: 9px 0 0; color: var(--danger); font-size: 11px; }
 .dialog-actions { justify-content: flex-end; gap: 8px; margin-top: 18px; }
-
 @media (max-width: 680px) {
-  .app-shell { padding: 22px 20px 24px; }
-  .hero { display: block; padding: 82px 0 60px; }
-  .today-card { display: inline-block; margin-top: 34px; text-align: left; }
+  .app-shell { min-height: 100vh; margin: 0; padding: 30px 22px; border-radius: 0; }
+  .hero { padding: 90px 0 62px; }
+  h1 { font-size: clamp(42px, 11vw, 60px); }
+  .hero-copy { font-size: 23px; }
   .deadline-list { grid-template-columns: 1fr; }
   .footer { align-items: flex-start; flex-direction: column; gap: 10px; }
 }
-
 @media (max-width: 420px) {
-  .topbar .button-primary { padding: 10px 12px; }
-  .topbar .button-primary span { font-size: 17px; line-height: 10px; }
-  .topbar .button-primary { font-size: 0; }
-  .topbar .button-primary span { font-size: 18px; }
-  .deadline-card { padding: 21px 18px 18px; }
-  .unit-value { font-size: 18px; }
+  .brand { font-size: 24px; }
+  .button-primary { padding: 11px 13px; font-size: 0; }
+  .button-primary span { font-size: 19px; }
+  .deadline-card { padding: 24px 16px 20px; }
+  .deadline-title { font-size: 23px; }
+  .deadline-date { font-size: 13px; }
+  .countdown { gap: 5px; }
+  .unit { padding: 15px 3px 12px; }
+  .unit-value { font-size: 25px; }
+  .unit-label { font-size: 10px; letter-spacing: .08em; }
 }

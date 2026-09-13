@@ -4,7 +4,6 @@ const elements = {
   list: document.querySelector("#deadline-list"),
   empty: document.querySelector("#empty-state"),
   count: document.querySelector("#deadline-count"),
-  today: document.querySelector("#today-date"),
   dialog: document.querySelector("#deadline-dialog"),
   form: document.querySelector("#deadline-form"),
   title: document.querySelector("#title"),
@@ -38,18 +37,7 @@ function formatDate(target) {
     weekday: "short",
     month: "short",
     day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
   }).format(new Date(target));
-}
-
-function formatToday() {
-  elements.today.textContent = new Intl.DateTimeFormat(undefined, {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  }).format(new Date());
 }
 
 function getTimeLeft(target) {
@@ -171,9 +159,7 @@ document.addEventListener("click", (event) => {
   if (!event.target.closest(".menu-wrap")) document.querySelectorAll(".menu").forEach((menu) => { menu.hidden = true; });
 });
 
-formatToday();
 render();
 setInterval(() => {
-  formatToday();
   render();
 }, 1000);

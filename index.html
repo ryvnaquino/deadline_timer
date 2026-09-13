@@ -19,8 +19,7 @@
     <main class="app-shell">
       <header class="topbar">
         <a class="brand" href="/" aria-label="Deadline home">
-          <span class="brand-mark" aria-hidden="true">✦</span>
-          <span>Deadline</span>
+          <span>DEADLINE</span>
         </a>
         <button class="button button-primary" id="add-deadline-button" type="button">
           <span aria-hidden="true">+</span>
@@ -30,23 +29,18 @@
 
       <section class="hero" aria-labelledby="page-title">
         <div>
-          <p class="eyebrow">Your time, in view</p>
-          <h1 id="page-title">Keep your eye<br /><em>on the deadline.</em></h1>
-          <p class="hero-copy">A quiet place for the things that matter next.</p>
-        </div>
-        <div class="today-card">
-          <span class="today-label">Today</span>
-          <strong id="today-date"></strong>
+          <p class="eyebrow">Every second counts</p>
+          <h1 id="page-title">Keep track of your deadlines.</h1>
+          <p class="hero-copy">Never miss what's next.</p>
         </div>
       </section>
 
       <section class="deadline-section" aria-labelledby="deadlines-heading">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Your list</p>
-            <h2 id="deadlines-heading">Upcoming deadlines <span id="deadline-count">0</span></h2>
+            <p class="eyebrow">Upcoming</p>
+            <h2 id="deadlines-heading"><span id="deadline-count" class="visually-hidden">0</span></h2>
           </div>
-          <p class="section-hint">Updates every second</p>
         </div>
 
         <div id="deadline-list" class="deadline-list" aria-live="polite"></div>
