@@ -34,3 +34,7 @@ Then visit <http://localhost:8000>.
 ## Deployment
 
 The app is deployed with GitHub Pages through [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). Pushes to `main` or the deployment branch trigger a new deployment.
+
+## Vercel Analytics
+
+The page includes Vercel's Web Analytics client. To collect visits and page views, import this repository into Vercel, open the project dashboard, and enable **Web Analytics** under **Analytics**. Analytics will collect data when the site is served by Vercel; the GitHub Pages deployment does not send data to Vercel.
