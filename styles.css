@@ -22,12 +22,12 @@ body {
 button, input { font: inherit; }
 button { cursor: pointer; }
 .app-shell {
-  width: calc(100% - clamp(24px, 6vw, 96px));
-  min-height: calc(100vh - clamp(32px, 6vw, 96px));
-  margin: clamp(16px, 3vw, 48px) auto;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
   padding: clamp(28px, 5vw, 58px) clamp(22px, 5.4vw, 60px) clamp(34px, 5vw, 56px);
   background: var(--panel);
-  border-radius: 12px;
+  border-radius: 0;
 }
 .topbar, .section-heading, .footer, .dialog-heading, .dialog-actions { display: flex; align-items: center; justify-content: space-between; }
 .brand {
