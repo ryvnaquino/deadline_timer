@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A calm, focused countdown timer for your important deadlines." />
+    <title>Deadline — Countdown timer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Deadline home">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <span>Deadline</span>
+        </a>
+        <button class="button button-primary" id="add-deadline-button" type="button">
+          <span aria-hidden="true">+</span>
+          Add deadline
+        </button>
+      </header>
+
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Your time, in view</p>
+          <h1 id="page-title">Keep your eye<br /><em>on the deadline.</em></h1>
+          <p class="hero-copy">A quiet place for the things that matter next.</p>
+        </div>
+        <div class="today-card">
+          <span class="today-label">Today</span>
+          <strong id="today-date"></strong>
+        </div>
+      </section>
+
+      <section class="deadline-section" aria-labelledby="deadlines-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Your list</p>
+            <h2 id="deadlines-heading">Upcoming deadlines <span id="deadline-count">0</span></h2>
+          </div>
+          <p class="section-hint">Updates every second</p>
+        </div>
+
+        <div id="deadline-list" class="deadline-list" aria-live="polite"></div>
+
+        <div id="empty-state" class="empty-state" hidden>
+          <div class="empty-icon" aria-hidden="true">◷</div>
+          <h3>Your next chapter starts here.</h3>
+          <p>Add a deadline to turn a far-off date into a clear, manageable countdown.</p>
+          <button class="button button-secondary" id="empty-add-button" type="button">Add your first deadline <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>Made for moments that matter.</span>
+        <span class="status"><i aria-hidden="true"></i> Saved locally on this device</span>
+      </footer>
+    </main>
+
+    <dialog id="deadline-dialog" class="deadline-dialog" aria-labelledby="dialog-title">
+      <form id="deadline-form">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">New moment</p>
+            <h2 id="dialog-title">Add a deadline</h2>
+          </div>
+          <button class="icon-button" id="close-dialog-button" type="button" aria-label="Close dialog">×</button>
+        </div>
+        <label for="title">What are you working toward?</label>
+        <input id="title" name="title" type="text" placeholder="e.g. Launch my portfolio" maxlength="80" required />
+        <label for="target">When is it due?</label>
+        <input id="target" name="target" type="datetime-local" required />
+        <p class="form-error" id="form-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button class="button button-ghost" id="cancel-dialog-button" type="button">Cancel</button>
+          <button class="button button-primary" type="submit">Save deadline</button>
+        </div>
+      </form>
+    </dialog>
+    <div class="dialog-backdrop" id="dialog-backdrop" hidden></div>
+  </body>
+</html>
