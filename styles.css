@@ -44,17 +44,23 @@ button { cursor: pointer; }
 }
 .brand-mark {
   display: grid;
-  width: 31px;
+  width: 42px;
   height: 31px;
   place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  animation: mark-spin 7s linear infinite;
+  border: 0;
 }
-.brand-mark svg { width: 21px; height: 21px; fill: none; stroke: var(--ink); stroke-linecap: round; stroke-linejoin: round; stroke-width: 3.5; }
-@keyframes mark-spin { to { transform: rotate(360deg); } }
+.brand-mark svg { width: 42px; height: 24px; overflow: visible; }
+.loop-base, .loop-light { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 3.4; }
+.loop-base { stroke: #727272; }
+.loop-light {
+  stroke: #fff;
+  stroke-dasharray: 7 72;
+  filter: url("#loop-glow");
+  animation: loop-light-travel 2.8s linear infinite;
+}
+@keyframes loop-light-travel { to { stroke-dashoffset: -79; } }
 @media (prefers-reduced-motion: reduce) {
-  .brand-mark { animation: none; }
+  .loop-light { animation: none; stroke-dasharray: 7 72; }
 }
 .button { border: 1px solid var(--line); border-radius: 7px; font-size: 15px; transition: background .18s, border-color .18s; }
 .button-primary { display: inline-flex; align-items: center; gap: 7px; padding: 14px 24px; color: var(--ink); background: transparent; }
