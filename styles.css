@@ -32,12 +32,29 @@ button { cursor: pointer; }
 }
 .topbar, .section-heading, .footer, .dialog-heading, .dialog-actions { display: flex; align-items: center; justify-content: space-between; }
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 28px;
   font-weight: 700;
   letter-spacing: .04em;
   text-decoration: none;
+}
+.brand-mark {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  animation: mark-spin 7s linear infinite;
+}
+.brand-mark svg { width: 21px; height: 21px; fill: none; stroke: var(--ink); stroke-linecap: round; stroke-linejoin: round; stroke-width: 3.5; }
+@keyframes mark-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .brand-mark { animation: none; }
 }
 .button { border: 1px solid var(--line); border-radius: 7px; font-size: 15px; transition: background .18s, border-color .18s; }
 .button-primary { display: inline-flex; align-items: center; gap: 7px; padding: 14px 24px; color: var(--ink); background: transparent; }
