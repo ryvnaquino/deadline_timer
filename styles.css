@@ -22,7 +22,7 @@ body {
 button, input { font: inherit; }
 button { cursor: pointer; }
 .app-shell {
-  width: min(1120px, calc(100% - clamp(24px, 6vw, 96px)));
+  width: calc(100% - clamp(24px, 6vw, 96px));
   min-height: calc(100vh - clamp(32px, 6vw, 96px));
   margin: clamp(16px, 3vw, 48px) auto;
   padding: clamp(28px, 5vw, 58px) clamp(22px, 5.4vw, 60px) clamp(34px, 5vw, 56px);
