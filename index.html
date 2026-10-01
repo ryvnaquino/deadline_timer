@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="backend-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js" defer></script>
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -33,10 +35,13 @@
           </span>
           <span>DEADLINE</span>
         </a>
-        <button class="button button-primary" id="add-deadline-button" type="button">
-          <span aria-hidden="true">+</span>
-          Add deadline
-        </button>
+        <div class="header-actions">
+          <button class="button button-account" id="account-button" type="button">Sign in to sync</button>
+          <button class="button button-primary" id="add-deadline-button" type="button">
+            <span aria-hidden="true">+</span>
+            Add deadline
+          </button>
+        </div>
       </header>
 
       <section class="hero" aria-labelledby="page-title">
@@ -66,7 +71,7 @@
       </section>
 
       <footer class="footer">
-        <span class="status"><i aria-hidden="true"></i> Saved locally on this device</span>
+        <span class="status" id="storage-status" role="status" aria-live="polite"><i aria-hidden="true"></i> Saved locally on this device</span>
       </footer>
     </main>
 
@@ -87,6 +92,33 @@
         <div class="dialog-actions">
           <button class="button button-ghost" id="cancel-dialog-button" type="button">Cancel</button>
           <button class="button button-primary" type="submit">Save deadline</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="account-dialog" class="deadline-dialog account-dialog" aria-labelledby="account-dialog-title">
+      <form id="account-form">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">Your deadlines, everywhere</p>
+            <h2 id="account-dialog-title">Sign in to sync</h2>
+          </div>
+          <button class="icon-button" id="close-account-button" type="button" aria-label="Close dialog">×</button>
+        </div>
+        <p class="account-description">Create an account or sign in to securely sync your deadlines across your devices.</p>
+        <div id="backend-setup-message" class="backend-setup-message" hidden>
+          Cloud sync needs to be connected to a Supabase project. See the setup instructions in the project README.
+        </div>
+        <div id="account-fields">
+          <label for="account-email">Email</label>
+          <input id="account-email" name="email" type="email" autocomplete="email" required />
+          <label for="account-password">Password</label>
+          <input id="account-password" name="password" type="password" minlength="8" autocomplete="current-password" required />
+        </div>
+        <p class="account-message" id="account-message" role="status" aria-live="polite"></p>
+        <div class="dialog-actions account-actions">
+          <button class="button button-ghost" id="account-mode-button" type="button">Create account</button>
+          <button class="button button-primary" id="account-submit-button" type="submit">Sign in</button>
+          <button class="button button-ghost" id="sign-out-button" type="button" hidden>Sign out</button>
         </div>
       </form>
     </dialog>
