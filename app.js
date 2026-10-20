@@ -104,7 +104,7 @@ function render() {
       : `<p class="expired-label">This deadline has passed.</p>`;
     return `<article class="deadline-card${left ? "" : " expired"}" data-id="${deadline.id}">
       <div class="card-top">
-        <div><h3 class="deadline-title" title="${escapeHtml(deadline.title)}">${escapeHtml(deadline.title)}</h3><p class="deadline-date">${formatDate(deadline.target)}</p></div>
+        <div class="deadline-info"><h3 class="deadline-title" title="${escapeHtml(deadline.title)}">${escapeHtml(deadline.title)}</h3><p class="deadline-date">${formatDate(deadline.target)}</p></div>
         <div class="menu-wrap">
           <button class="icon-button menu-toggle" type="button" aria-label="Options for ${escapeHtml(deadline.title)}" aria-expanded="${openMenuId === deadline.id}">···</button>
           <div class="menu"${openMenuId === deadline.id ? "" : " hidden"}><button type="button" data-action="edit">Edit</button><button class="delete-action" type="button" data-action="delete">Delete</button></div>
