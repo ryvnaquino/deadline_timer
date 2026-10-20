@@ -93,14 +93,16 @@ h1 {
   position: relative;
   display: flex;
   min-width: 0;
-  min-height: 230px;
+  min-height: clamp(240px, 25vw, 320px);
   align-items: center;
   justify-content: center;
   isolation: isolate;
-  padding: 34px clamp(50px, 8vw, 92px);
+  padding: 46px clamp(56px, 9vw, 110px);
   animation: deadline-cloud-drift 8s ease-in-out infinite;
 }
 .deadline-card:nth-child(even) { animation-delay: -4s; }
+.deadline-card:nth-child(3n) { animation-delay: -2.7s; }
+.deadline-card:nth-child(4n) { animation-delay: -5.3s; }
 .deadline-cloud {
   position: absolute;
   z-index: -1;
@@ -118,18 +120,19 @@ h1 {
   filter: drop-shadow(0 10px 18px rgb(0 0 0 / 16%));
 }
 .deadline-content { width: 100%; min-width: 0; }
-.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
-.deadline-info { display: flex; min-width: 0; align-items: baseline; gap: 18px; }
-.deadline-title { margin: 0; overflow: hidden; font-family: Georgia, "Times New Roman", serif; font-size: clamp(20px, 2.2vw, 27px); font-weight: 700; letter-spacing: -.03em; text-overflow: ellipsis; white-space: nowrap; }
+.card-top { position: relative; display: flex; align-items: center; justify-content: center; gap: 18px; }
+.deadline-info { display: flex; min-width: 0; flex-direction: column; align-items: center; gap: 5px; text-align: center; }
+.deadline-title { max-width: 100%; margin: 0; overflow: hidden; font-family: Georgia, "Times New Roman", serif; font-size: clamp(20px, 2.2vw, 27px); font-weight: 700; letter-spacing: -.03em; text-overflow: ellipsis; white-space: nowrap; }
 .deadline-date { flex: 0 0 auto; margin: 0; color: var(--muted); font-size: clamp(12px, 1.25vw, 16px); font-weight: 400; }
 .menu-wrap { position: relative; }
+.card-top > .menu-wrap { position: absolute; top: -8px; right: -12px; }
 .icon-button { display: grid; width: 28px; height: 28px; place-items: center; color: var(--muted); background: transparent; border: 0; border-radius: 4px; font-size: 20px; }
 .icon-button:hover { color: var(--ink); background: #222; }
 .menu { position: absolute; z-index: 2; top: 32px; right: 0; width: 110px; padding: 5px; background: #242424; border: 1px solid #3b3b3b; border-radius: 4px; }
 .menu button { display: block; width: 100%; padding: 8px 9px; color: var(--ink); background: transparent; border: 0; border-radius: 4px; font-size: 11px; text-align: left; }
 .menu button:hover { background: #303030; }
 .menu .delete-action { color: var(--danger); }
-.countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 104px)); align-items: center; gap: clamp(6px, 1.5vw, 18px); margin-top: 20px; }
+.countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 104px)); justify-content: center; align-items: center; gap: clamp(6px, 1.5vw, 18px); margin-top: 20px; }
 .unit {
   position: relative;
   display: flex;
@@ -172,8 +175,10 @@ h1 {
 .deadline-card.expired .deadline-cloud path { stroke: #493939; }
 .expired-label { margin: 14px 0 0; color: var(--muted); font-size: 13px; }
 @keyframes deadline-cloud-drift {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(5px, -3px); }
+  50% { transform: translate(1px, -7px); }
+  75% { transform: translate(-4px, -2px); }
 }
 .empty-state { padding: 36px 20px 48px; color: var(--muted); text-align: center; }
 .empty-icon { margin: 0 auto 20px; color: var(--muted); font-size: 35px; }
@@ -214,14 +219,13 @@ h1 {
 @media (max-width: 720px) {
   .app-shell { width: 100%; min-height: 100vh; margin: 0; border-radius: 0; }
   .hero { padding: clamp(72px, 14vw, 100px) 0 58px; }
-  .deadline-card { min-height: 205px; padding: 34px clamp(32px, 8vw, 62px); }
-  .deadline-info { flex-wrap: wrap; gap: 5px 12px; }
+  .deadline-card { min-height: 220px; padding: 40px clamp(42px, 10vw, 70px); }
 }
 @media (max-width: 420px) {
   .brand { font-size: 24px; }
   .button-primary { padding: 11px 13px; font-size: 0; }
   .button-primary span { font-size: 19px; }
-  .deadline-card { min-height: 188px; padding: 32px 26px; }
+  .deadline-card { min-height: 204px; padding: 36px 34px; }
   .deadline-title { font-size: 23px; }
   .deadline-date { font-size: 13px; }
   .countdown { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; }
