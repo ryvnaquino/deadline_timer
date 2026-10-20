@@ -41,6 +41,7 @@ let accountMode = "sign-in";
 let currentUser = null;
 let loadedUserId = null;
 let sessionChange = 0;
+let openMenuId = null;
 
 function loadDeadlines() {
   try {
@@ -105,8 +106,8 @@ function render() {
       <div class="card-top">
         <div><h3 class="deadline-title" title="${escapeHtml(deadline.title)}">${escapeHtml(deadline.title)}</h3><p class="deadline-date">${formatDate(deadline.target)}</p></div>
         <div class="menu-wrap">
-          <button class="icon-button menu-toggle" type="button" aria-label="Options for ${escapeHtml(deadline.title)}" aria-expanded="false">···</button>
-          <div class="menu" hidden><button type="button" data-action="edit">Edit</button><button class="delete-action" type="button" data-action="delete">Delete</button></div>
+          <button class="icon-button menu-toggle" type="button" aria-label="Options for ${escapeHtml(deadline.title)}" aria-expanded="${openMenuId === deadline.id}">···</button>
+          <div class="menu"${openMenuId === deadline.id ? "" : " hidden"}><button type="button" data-action="edit">Edit</button><button class="delete-action" type="button" data-action="delete">Delete</button></div>
         </div>
       </div>${countdown}
     </article>`;
@@ -127,6 +128,7 @@ function createId() {
 }
 
 function openDialog(id = null) {
+  openMenuId = null;
   editingId = id;
   const deadline = deadlines.find((item) => item.id === id);
   elements.form.reset();
@@ -293,6 +295,7 @@ async function persistDeadline(deadline, isEditing) {
 }
 
 async function deleteDeadline(id) {
+  openMenuId = null;
   if (currentUser) {
     setStorageStatus("Deleting from your account…");
     const { error } = await supabaseClient
@@ -346,11 +349,8 @@ elements.list.addEventListener("click", async (event) => {
   const card = event.target.closest(".deadline-card");
   if (!card) return;
   if (event.target.closest(".menu-toggle")) {
-    const menu = card.querySelector(".menu");
-    const isOpen = !menu.hidden;
-    document.querySelectorAll(".menu").forEach((item) => { item.hidden = true; });
-    menu.hidden = isOpen;
-    event.target.closest(".menu-toggle").setAttribute("aria-expanded", String(!isOpen));
+    openMenuId = openMenuId === card.dataset.id ? null : card.dataset.id;
+    render();
     return;
   }
   if (!action) return;
@@ -411,7 +411,10 @@ elements.signOutButton.addEventListener("click", async () => {
 });
 
 document.addEventListener("click", (event) => {
-  if (!event.target.closest(".menu-wrap")) document.querySelectorAll(".menu").forEach((menu) => { menu.hidden = true; });
+  if (!event.target.closest(".menu-wrap") && openMenuId) {
+    openMenuId = null;
+    render();
+  }
 });
 
 render();
