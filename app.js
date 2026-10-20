@@ -109,13 +109,19 @@ function render() {
       ? `<div class="countdown">${createUnit(left.days, "Days")}${createUnit(left.hours, "Hours")}${createUnit(left.minutes, "Min")}${createUnit(left.seconds, "Sec")}</div>`
       : `<p class="expired-label">This deadline has passed.</p>`;
     return `<article class="deadline-card${left ? "" : " expired"}" data-id="${deadline.id}">
-      <div class="card-top">
-        <div class="deadline-info"><h3 class="deadline-title" title="${escapeHtml(deadline.title)}">${escapeHtml(deadline.title)}</h3><p class="deadline-date">${formatDate(deadline.target)}</p></div>
-        <div class="menu-wrap">
-          <button class="icon-button menu-toggle" type="button" aria-label="Options for ${escapeHtml(deadline.title)}" aria-expanded="${openMenuId === deadline.id}">···</button>
-          <div class="menu"${openMenuId === deadline.id ? "" : " hidden"}><button type="button" data-action="edit">Edit</button><button class="delete-action" type="button" data-action="delete">Delete</button></div>
+      <svg class="deadline-cloud" viewBox="0 0 700 330" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M130 286C76 286 38 255 38 211c0-34 24-63 59-69-11-44 19-84 68-84 30 0 54 16 68 43 15-51 58-77 111-72 49 5 82 34 88 77 28-37 75-41 106-16 30 24 38 59 25 90 49-11 94 13 100 49 6 38-25 68-68 68-25 0-47-9-64-25-32 27-78 32-115 16-41 25-96 22-132-3-41 23-96 18-124-9-9 7-19 10-30 10Z" />
+      </svg>
+      <div class="deadline-content">
+        <div class="card-top">
+          <div class="deadline-info"><h3 class="deadline-title" title="${escapeHtml(deadline.title)}">${escapeHtml(deadline.title)}</h3><p class="deadline-date">${formatDate(deadline.target)}</p></div>
+          <div class="menu-wrap">
+            <button class="icon-button menu-toggle" type="button" aria-label="Options for ${escapeHtml(deadline.title)}" aria-expanded="${openMenuId === deadline.id}">···</button>
+            <div class="menu"${openMenuId === deadline.id ? "" : " hidden"}><button type="button" data-action="edit">Edit</button><button class="delete-action" type="button" data-action="delete">Delete</button></div>
+          </div>
         </div>
-      </div>${countdown}
+        ${countdown}
+      </div>
     </article>`;
   }).join("");
 }
