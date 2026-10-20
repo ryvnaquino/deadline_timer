@@ -90,7 +90,13 @@ function getTimeLeft(target) {
 }
 
 function createUnit(value, label) {
-  return `<div class="unit"><span class="unit-value">${String(value).padStart(2, "0")}</span><span class="unit-label">${label}</span></div>`;
+  return `<div class="unit">
+    <svg class="unit-cloud" viewBox="0 0 180 100" aria-hidden="true" focusable="false">
+      <path d="M34 82C18 82 7 70 7 54c0-14 10-25 25-27C28 14 39 6 54 6c13 0 23 7 28 19C87 12 99 6 113 7c16 1 27 12 27 28v3c13-9 30-7 39 5 12 16 6 37-9 45-11 6-26 4-36-4-12 11-30 15-47 9-15 9-36 7-48-4-2 1-4 1-5 1Z" />
+    </svg>
+    <span class="unit-value">${String(value).padStart(2, "0")}</span>
+    <span class="unit-label">${label}</span>
+  </div>`;
 }
 
 function render() {
@@ -112,6 +118,23 @@ function render() {
       </div>${countdown}
     </article>`;
   }).join("");
+}
+
+function updateCountdowns() {
+  const cards = [...elements.list.querySelectorAll(".deadline-card")];
+  for (const card of cards) {
+    const deadline = deadlines.find((item) => item.id === card.dataset.id);
+    if (!deadline) continue;
+    const left = getTimeLeft(deadline.target);
+    if (!left || card.classList.contains("expired")) {
+      if (!left && !card.classList.contains("expired")) render();
+      continue;
+    }
+    const values = [left.days, left.hours, left.minutes, left.seconds];
+    card.querySelectorAll(".unit-value").forEach((element, index) => {
+      element.textContent = String(values[index]).padStart(2, "0");
+    });
+  }
 }
 
 function escapeHtml(value) {
@@ -419,4 +442,4 @@ document.addEventListener("click", (event) => {
 
 render();
 initializeAuth();
-setInterval(render, 1000);
+setInterval(updateCountdowns, 1000);
