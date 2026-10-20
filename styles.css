@@ -70,12 +70,12 @@ button { cursor: pointer; }
 .button-account:hover { color: var(--ink); background: #202020; border-color: #4a4a4a; }
 .button-secondary { display: inline-flex; gap: 8px; align-items: center; padding: 11px 15px; color: var(--ink); background: transparent; }
 .button-ghost { padding: 11px 16px; color: var(--muted); background: transparent; border: 0; }
-.hero { padding: clamp(48px, 7vh, 88px) 0 clamp(36px, 4vh, 58px); }
+.hero { padding: clamp(48px, 7vh, 88px) 0 clamp(24px, 3vh, 42px); }
 .eyebrow { margin: 0 0 25px; color: #a5a4a2; font-size: 12px; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; }
 h1, h2, h3, p { margin-top: 0; }
 h1 {
-  max-width: 950px;
-  margin-bottom: 27px;
+  max-width: none;
+  margin-bottom: 0;
   color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(32px, 4vw, 54px);
@@ -83,7 +83,6 @@ h1 {
   letter-spacing: -.045em;
   line-height: 1.08;
 }
-.hero-copy { margin: 0; color: var(--muted); font-family: Georgia, "Times New Roman", serif; font-size: clamp(20px, 2.4vw, 28px); font-style: italic; }
 .deadline-section { padding-bottom: 42px; }
 .section-heading { padding-bottom: 24px; }
 .section-heading .eyebrow { margin: 0; }
